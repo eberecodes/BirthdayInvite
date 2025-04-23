@@ -5,6 +5,7 @@ const RSVP = () => {
 
   const [form, setForm] = useState({ name: "", rsvp: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit: React.ChangeEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
@@ -13,6 +14,7 @@ const RSVP = () => {
 
     const scriptURL = "https://script.google.com/macros/s/AKfycbxe0ZoXNRTGnQVf18V5nrCv598PkiiECWfcmSl6RxT-9-3wwL_wwFDxbm0XJtO9hyv1/exec";
 
+    setIsSubmitting(true);
     try {
       await fetch(scriptURL, {
         method: "POST",
@@ -30,6 +32,8 @@ const RSVP = () => {
       setSubmitted(true);
     } catch (error) {
       console.error("Error submitting the form:", error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -78,9 +82,16 @@ const RSVP = () => {
              </div>
              <button
                 type="submit"
-                className="w-full bg-green-500 text-black font-bold py-3 px-6 rounded hover:bg-green-400 text-base sm:text-lg"
+                disabled={isSubmitting}
+                className={`w-full bg-green-500 text-black font-bold py-3 px-6 rounded hover:bg-green-400 text-base sm:text-lg ${
+                isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+                }`}
              >
-               Submit
+                {isSubmitting ? (
+                    <span>Submitting...</span> // Loading text when submitting
+                 ) : (
+                "Submit"
+                 )}
              </button>
        </form>
        ) : (

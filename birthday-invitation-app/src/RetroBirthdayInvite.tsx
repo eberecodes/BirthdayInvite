@@ -14,7 +14,9 @@ const RetroBirthdayInvite: React.FC = () => {
   };
 
   const handleRSVPClick = () => {
-    if (navigator.vibrate) navigator.vibrate(50);
+    if (navigator.vibrate) {
+        navigator.vibrate(60);
+    }
     setView("rsvp");
   };
 
@@ -27,7 +29,7 @@ const RetroBirthdayInvite: React.FC = () => {
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-center p-6">
       <OrientationHint />
-      <div className="overflow-hidden relative flex flex-col justify-center w-full max-w-[70vw] aspect-[3/2] sm:w-[800px] bg-green-700 border-[24px] border-gray-700 rounded-xs shadow-inner shadow-black">
+      <div className="overflow-hidden relative flex flex-col justify-center w-full aspect-[4/3] max-w-full sm:max-w-[70vw] sm:w-[800px] bg-green-700 border-[24px] border-gray-700 rounded-xs shadow-inner shadow-black">
         <span className="absolute top-2 right-4 text-green-500 text-xs opacity-60">{new Date().toLocaleTimeString()}</span>
         <div className="absolute inset-0 tv-static opacity-20 pointer-events-none z-0 rounded-2xl bg-[radial-gradient(circle_at_center,_#000_0%,_#0a0a0a_70%,_#000_100%)]" />
 
@@ -47,7 +49,7 @@ const RetroBirthdayInvite: React.FC = () => {
         </div>
       </div>
 
-      <div className="w-full max-w-[70vw] h-[60px] sm:w-[800px] bg-gray-800 border-x-[12px] border-b-[12px] border-gray-700 rounded-b-xs flex items-center justify-around gap-4 px-4">
+      <div className="w-full max-w-full sm:max-w-[70vw] sm:w-[800px] h-[60px] bg-gray-800 border-x-[12px] border-b-[12px] border-gray-700 rounded-b-xs flex items-center justify-around gap-4 px-4 sm:px-0">
         <button
           onClick={handlePowerOff}
           className="w-5 h-5 bg-red-600 rounded-full hover:bg-red-500 border border-black shadow-inner active:scale-95 active:shadow-[0_0_20px_rgba(0,255,0,0.6)]"
